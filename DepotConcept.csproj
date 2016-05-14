@@ -52,6 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Depot\Datas\DepotData.cs" />
+    <Compile Include="Depot\Datas\DepotDataDateTime.cs" />
+    <Compile Include="Depot\Datas\DepotDataEntityId.cs" />
+    <Compile Include="Depot\Datas\DepotDataEnum.cs" />
+    <Compile Include="Depot\Datas\DepotDataGuid.cs" />
+    <Compile Include="Depot\Datas\DepotDataInt.cs" />
+    <Compile Include="Depot\Datas\DepotDataReal.cs" />
+    <Compile Include="Depot\Datas\DepotDataString.cs" />
     <Compile Include="Depot\Lattice\Knowledge\Facts\lrfDictionary.cs" />
     <Compile Include="Depot\Lattice\Knowledge\Facts\lrFact.cs" />
     <Compile Include="Depot\Lattice\Knowledge\lRule.cs" />
@@ -59,7 +67,7 @@
     <Compile Include="Depot\Page.cs" />
     <Compile Include="Depot\Depot.cs" />
     <Compile Include="Depot\Holder.cs" />
-    <Compile Include="Depot\Index.cs" />
+    <Compile Include="Depot\Sorter.cs" />
     <Compile Include="Depot\Lattice\Lattice.cs" />
     <Compile Include="Depot\Trait\Trait.cs" />
     <Compile Include="DepotDemoForm.cs">

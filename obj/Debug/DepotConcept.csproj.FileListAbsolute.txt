@@ -22,3 +22,7 @@ E:\Dropbox\01work\101Depot\DepotConcept\obj\Debug\DepotConcept.csproj.GenerateRe
 E:\Dropbox\01work\101Depot\DepotConcept\bin\Debug\Eto.Parse.dll
 E:\Dropbox\01work\101Depot\DepotConcept\bin\Debug\Eto.Parse.xml
 E:\Dropbox\01work\101Depot\DepotConcept\obj\Debug\DepotConcept.InfoForm.resources
+D:\10Reps\001Depot\bin\Debug\DepotConcept.exe.config
+D:\10Reps\001Depot\bin\Debug\DepotConcept.XML
+D:\10Reps\001Depot\obj\Debug\DepotConcept.exe
+D:\10Reps\001Depot\obj\Debug\DepotConcept.pdb

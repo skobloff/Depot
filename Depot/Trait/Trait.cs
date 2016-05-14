@@ -9,13 +9,25 @@ namespace Depot
     /// <summary>
     /// Реализует trait - минимальную единицу хранения данных в системе.
     /// </summary>
-    internal abstract class Trait
+    internal class Trait
     {
-        internal TraitTypes TraitType { get; set; }
+        internal MetaTypes _metaType;
+        internal MetaTypes MetaType { get; set; }
+
+        internal ushort _structureType;
+        internal ushort StructureType { get; set; }
+
         internal EntityId EntityId { get; set; } //EntityId есть всегда, потому что Trait это по сути отражение отношения Entity с чем-либо
         internal LatticeId LatticeId { get; set; } //LatticeId есть всегда, потому что Trait всегда принадлежит к какой-либо проводке
 
-        internal Trait (TraitTypes _traitType, EntityId _entityId, LatticeId _latticeId)
+        internal DepotData Data;
+
+        internal Trait (
+            MetaTypes _metaType,
+            ushort _structureType,
+             
+            EntityId _entityId, 
+            LatticeId _latticeId)
         {
             TraitType = _traitType;
             EntityId = _entityId;

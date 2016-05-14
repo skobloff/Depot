@@ -9,6 +9,72 @@ using System.Data;
 namespace Depot
 {
     /// <summary>
+    /// Метатип trait
+    /// </summary>
+    public enum MetaTypes : byte
+    {
+        /// <summary>
+        /// Метатип не задан
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// Знания-факты
+        /// </summary>
+        Fact = 1
+    }
+
+    /// <summary>
+    /// Метатип данных
+    /// </summary>
+    public enum DataTypes : byte
+    {
+        /// <summary>
+        /// Тип данных не известен
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// Тип данных GUID
+        /// </summary>
+        GUID = 1,
+
+        /// <summary>
+        /// Перечислимый тип
+        /// </summary>
+        ENUM = 2,
+
+        /// <summary>
+        /// Ссылка на другие данные
+        /// </summary>
+        EntityId = 3,
+
+        /// <summary>
+        /// Целочисленное значение (реальный тип Int64)
+        /// </summary>
+        Int = 4,
+
+        /// <summary>
+        /// Данные с плавающей запятой
+        /// </summary>
+        Real = 5,
+
+        /// <summary>
+        /// Строковые данные
+        /// </summary>
+        String = 6,
+
+        /// <summary>
+        /// Дата и время
+        /// </summary>
+        DateTime = 7,
+
+        /// <summary>
+        /// Не индексируемая строка
+        /// </summary>
+        Memo = 8
+    }
+
+    /// <summary>
     /// Тип трэйта определяет его физическую структуру.
     /// </summary>
     public enum TraitTypes : ushort
@@ -98,16 +164,12 @@ namespace Depot
     /// <summary>
     /// Структура для элемента trait, хранит код сущности - код правила, предиката, вывода, элемента справочника, поля, документа, и т.д.
     /// </summary>
-    [StructLayout(LayoutKind.Explicit)]
     internal struct EntityId
     {
         /// <summary>
         /// Данные
         /// </summary>
-        [FieldOffset(0)]
-        internal ulong data;
-        [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-        internal byte[] bytes;
+        internal ulong data { get; set; }
 
         internal EntityId (ulong data)
             : this ()
