@@ -1,0 +1,469 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DepotConcept</name>
+    </assembly>
+    <members>
+        <member name="T:Depot.lrfDictionary">
+            <summary>
+            Запись о факте существования справочника в базе данных
+            </summary>
+        </member>
+        <member name="T:Depot.lrFact">
+            <summary>
+            Предок всех записей о фактах
+            Факт определяется синтаксисом:
+            The [name] is a [definition].
+            </summary>
+        </member>
+        <member name="F:Depot.lrFact.name">
+            <summary>
+            Наименование факта
+            </summary>
+        </member>
+        <member name="M:Depot.lrFact.getDefinition">
+            <summary>
+            Возвращает UPCASE-строку содержащую определение факта
+            </summary>
+            <returns>Определение</returns>
+        </member>
+        <member name="T:Depot.lRule">
+            <summary>
+            Предок всех записей о правилах
+            </summary>
+        </member>
+        <member name="F:Depot.lRule.startDate">
+            <summary>
+            Дата начала действия правила
+            </summary>
+        </member>
+        <member name="F:Depot.lRule.endDate">
+            <summary>
+            Дата окончания действия правила
+            </summary>
+        </member>
+        <member name="T:Depot.TraitTypes">
+            <summary>
+            Тип трэйта определяет его физическую структуру.
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.NoType">
+            <summary>
+            Тип не задан, используется тоько для страниц. Все трэйты на этой странице должны содержать тип.
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LE">
+            <summary>
+            Трэйт из двух значений: 8 байт код сущности и 8 байт код lattice
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.EL">
+            <summary>
+            Трэйт из двух значений: 8 байт код lattice и 8 байт код сущности
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LEG">
+            <summary>
+            Трэйт из двух значений: 8 байт код сущности и 32 байта GUID
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.EGL">
+            <summary>
+            Трэйт из двух значений: 32 байта GUID и 8 байт код сущности
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LEEnum">
+            <summary>
+            Трэйт из трех значений: 8 байт код lattice, 8 байт код сущности и 2 байта Enum-значение сущности
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.EEnumL">
+            <summary>
+            Трэйт из трех значений: 8 байт код сущности, 2 байта Enum-значение сущности и 8 байт код lattice
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LEStr">
+            <summary>
+            Трэйт из трех значений: 8 байт код lattice, 8 байт код сущности и строка (2 байта длинна и затем данные)
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.EStrL">
+            <summary>
+            Трэйт из трех значений: 8 байт код сущности, строка (2 байта длинна и затем данные) и 8 байт код lattice
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LEDateTime">
+            <summary>
+            Трэйт из трех значений: 8 байт код lattice, 8 байт код сущности и DateTime (8 байт)
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.EDateTimeL">
+            <summary>
+            Трэйт из трех значений: 8 байт код сущности, DateTime (8 байт) и 8 байт код lattice
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LEInt">
+            <summary>
+            Трэйт из трех значений: 8 байт код lattice, 8 байт код сущности и Int64 (8 байт)
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.EIntL">
+            <summary>
+            Трэйт из трех значений: 8 байт код сущности, Int64 (8 байт) и 8 байт код lattice
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LEReal">
+            <summary>
+            Трэйт из трех значений: 8 байт код lattice, 8 байт код сущности и Real (? байт)
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.ERealL">
+            <summary>
+            Трэйт из трех значений: 8 байт код сущности, Real (? байт) и 8 байт код lattice
+            </summary>
+        </member>
+        <member name="F:Depot.TraitTypes.LEMemo">
+            <summary>
+            Трэйт из трех значений: 8 байт код lattice, 8 байт код сущности и Real (? байт)
+            </summary>
+        </member>
+        <member name="T:Depot.EntityId">
+            <summary>
+            Структура для элемента trait, хранит код сущности - код правила, предиката, вывода, элемента справочника, поля, документа, и т.д.
+            </summary>
+        </member>
+        <member name="F:Depot.EntityId.data">
+            <summary>
+            Данные
+            </summary>
+        </member>
+        <member name="T:Depot.LatticeId">
+            <summary>
+            Уникальный идентификатор trait в базе данных.
+            </summary>
+        </member>
+        <member name="F:Depot.LatticeId.data">
+            <summary>
+            Код
+            </summary>
+        </member>
+        <member name="T:Depot.PageData">
+            <summary>
+            128килобайтная структура со страницей данных внутри. 
+            Сделана чтобы в одну операцию читать всю страницу в память и выгружать ее на диск также в одну операцию со всеми описывающими переменными.
+            </summary>
+        </member>
+        <member name="F:Depot.PageData.baseGUID">
+            <summary>
+            Guid базы данных к которой принадлежит страница.
+            </summary>
+        </member>
+        <member name="F:Depot.PageData.pageGUID">
+            <summary>
+            Guid страницы.
+            </summary>
+        </member>
+        <member name="F:Depot.PageData.type">
+            <summary>
+            Тип trait's которые хранит страница.
+            </summary>
+        </member>
+        <member name="F:Depot.PageData.count">
+            <summary>
+            Количество traits уже сохраненных в странице.
+            </summary>
+        </member>
+        <member name="F:Depot.PageData.index">
+            <summary>
+            Массив со смещениями всех traits сохраненных на странице
+            </summary>
+        </member>
+        <member name="F:Depot.PageData.heap">
+            <summary>
+            Массив с собственно traits
+            </summary>
+        </member>
+        <member name="T:Depot.PageIndexElement">
+            <summary>
+            Структура для индекса страниц
+            </summary>
+        </member>
+        <member name="F:Depot.PageIndexElement.pageGUID">
+            <summary>
+            Guid страницы
+            </summary>
+        </member>
+        <member name="F:Depot.PageIndexElement.buffer">
+            <summary>
+            Буфер с первым trait страницы
+            </summary>
+        </member>
+        <member name="T:Depot.Page">
+            <summary>
+            Класс-держатель отсортированного массива traits в пямяти.
+            </summary>
+        </member>
+        <member name="M:Depot.Page.find(Depot.Trait)">
+            <summary>
+            Определяет отношение trait к странице
+            Поисковые методы возможно будут не в страницах, понимание где они будут появится позже
+            </summary>
+            <param name="_trait">Искомый trait</param>
+            <returns>
+            -1 trait меньше начального в странице;
+            0 trait попадает в страницу но его нет;
+            1 trait попадает в страницу и такой есть;
+            2 trait больше конечного на странице
+            </returns>
+        </member>
+        <member name="M:Depot.Page.getFirstTrait">
+            <summary>
+            Возвращает первый трэйт, если страница пуста то возвращает особый нулевой трэйт
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Depot.Depot">
+            <summary>
+            Предок классов реализующих саму базу и DataSource для прикладных приложений
+            </summary>
+        </member>
+        <member name="P:Depot.Depot.IsOpen">
+            <summary>
+            возвращает статус - открыта БД или нет
+            </summary>
+        </member>
+        <member name="M:Depot.Depot.GetDescription">
+            <summary>
+            Возвращает описание базы данных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Depot.Depot.CreateNewBase(System.String)">
+            <summary>
+            Создает новый файл с базой данных и переводит механизм в готовность исполения команд
+            </summary>
+            <param name="_fileName">Имя нового файла для базы данных</param>
+        </member>
+        <member name="M:Depot.Depot.OpenExistsBase(System.String)">
+            <summary>
+            Открывает существующий файл с базой данных и переводит механизм в готовность исполения команд
+            </summary>
+            <param name="_fileName">Имя файла с базой данных</param>
+        </member>
+        <member name="T:Depot.Holder">
+            <summary>
+            Holder кэширует страницы в памяти, при обращении к страницу подчитывает ее в кэш.
+            Механизм учитывает популярность страниц, и освобождает память в первую очередь от непопулярных страниц.
+            Holder ведет учет изменений в страницах и управляет их записью на диск.
+            </summary>
+        </member>
+        <member name="M:Depot.Holder.#ctor(System.String,System.Boolean)">
+            <summary>
+            Init new instance of Holder
+            </summary>
+            <param name="filename">true - It is a name of file</param>
+            <param name="isCreate">true - create new base, false - open older base</param>
+        </member>
+        <member name="T:Depot.Sorter">
+            <summary>
+            Индекс страниц отсортированный по возрастанию traits
+            </summary>
+        </member>
+        <member name="T:Depot.Lattice">
+            <summary>
+            Определяет минимальную сущность которую можно сохранить в базе данных.
+            Эта сущность всегда описывает создание или модификацию объекта:
+            1. правила;
+            1.1. Факты
+            1.1.1. The NAME is a dictionary.
+            1.1.2. The NAME is a document's type.
+            1.1.3. The NAME is a accounting.
+            1.1.4. The NAME is a constant.
+            1.1.5. The NAME is a calendar.
+            1.2. Сообщения
+            1.3. Выводы
+            1.4. Действия
+            2. документа;
+            3. элемента справочника;
+            4. проводки в учете;
+            5. события в календаре;
+            6. значения констант
+            В хранилище lattice представлена в виде набора более элементарных кусков - traits.
+            Потомки данного класса определяют поведение бизнес сущностей.
+            </summary>
+        </member>
+        <member name="F:Depot.Lattice.id">
+            <summary>
+            Уникальный идентификатор записи
+            </summary>
+        </member>
+        <member name="F:Depot.Lattice.entityId">
+            <summary>
+            Уникальный внутренний идентификатор сущности к которой относится запись
+            </summary>
+        </member>
+        <member name="F:Depot.Lattice.entityGuid">
+            <summary>
+            Guid сущности к которой относится запись
+            </summary>
+        </member>
+        <member name="F:Depot.Lattice.createDate">
+            <summary>
+            Дата и время физического создания записи
+            </summary>
+        </member>
+        <member name="F:Depot.Lattice.traits">
+            <summary>
+            Элементы из которых состоит запись
+            </summary>
+        </member>
+        <member name="T:Depot.Trait">
+            <summary>
+            Реализует trait - минимальную единицу хранения данных в системе.
+            </summary>
+        </member>
+        <member name="M:Depot.Trait.GetZeroTrait">
+            <summary>
+            Создает пустой трэйт для случая индексации пустой страницы
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Depot.Trait.Lenght">
+            <summary>
+            Подсчитывает количество ushort необходимых для хранения данного trait.
+            ВАЖНО!!! Нулевым ushort идет тип самого trait.
+            </summary>
+            <returns>Количество ushort</returns>
+        </member>
+        <member name="M:Depot.Trait.Data(System.Int32)">
+            <summary>
+            Возвращает данные.
+            </summary>
+            <param name="_i">Номер</param>
+            <returns>Данные</returns>
+        </member>
+        <member name="M:Depot.Trait.Compare(Depot.Trait)">
+            <summary>
+            Сравнивает текущий и переданный трэйты. Трэйты должны быть строго одного типа.
+            </summary>
+            <param name="_trait">Трэйт переданный для сравнения</param>
+            <returns>-1 если текущий трэйт меньше, 0 если равны, +1 если переданный трэйт меньше</returns>
+        </member>
+        <member name="M:Depot.Trait.getValue">
+            <summary>
+            Возвражает данные хранимые в trait если таковые есть.
+            </summary>
+            <returns>Данные</returns>
+        </member>
+        <member name="T:Depot.TraitComp">
+            <summary>
+            Realise IComparer for compare two traits.
+            </summary>
+        </member>
+        <member name="M:Depot.TraitComp.Compare(Depot.Trait,Depot.Trait)">
+            <summary>
+            Сравнивает два трэйта
+            </summary>
+            <param name="x">Первый трэйт для сравнения</param>
+            <param name="y">Второй трэйт для сравнения</param>
+            <returns>-1,0,+1 в зависимости от результата сравнения</returns>
+        </member>
+        <member name="F:DepotConcept.DepotDemoForm.components">
+            <summary>
+            Обязательная переменная конструктора.
+            </summary>
+        </member>
+        <member name="M:DepotConcept.DepotDemoForm.Dispose(System.Boolean)">
+            <summary>
+            Освободить все используемые ресурсы.
+            </summary>
+            <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        </member>
+        <member name="M:DepotConcept.DepotDemoForm.InitializeComponent">
+            <summary>
+            Требуемый метод для поддержки конструктора — не изменяйте 
+            содержимое этого метода с помощью редактора кода.
+            </summary>
+        </member>
+        <member name="F:DepotConcept.InfoForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DepotConcept.InfoForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DepotConcept.InfoForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:DepotConcept.Program.Main">
+            <summary>
+            Главная точка входа для приложения.
+            </summary>
+        </member>
+        <member name="T:DepotConcept.Properties.Resources">
+            <summary>
+              Класс ресурсов со строгим типом для поиска локализованных строк и пр.
+            </summary>
+        </member>
+        <member name="P:DepotConcept.Properties.Resources.ResourceManager">
+            <summary>
+              Возврат кэшированного экземпляра ResourceManager, используемого этим классом.
+            </summary>
+        </member>
+        <member name="P:DepotConcept.Properties.Resources.Culture">
+            <summary>
+              Переопределяет свойство CurrentUICulture текущего потока для всех
+              подстановки ресурсов с помощью этого класса ресурсов со строгим типом.
+            </summary>
+        </member>
+        <member name="T:Syntax.RunBase">
+            <summary>
+            Parent all class where do in system
+            </summary>
+        </member>
+        <member name="P:Syntax.RunBase.match">
+            <summary>
+            Link to match from result of script parsing.
+            </summary>
+        </member>
+        <member name="M:Syntax.RunBase.#ctor(Eto.Parse.Match)">
+            <summary>
+            Init class
+            </summary>
+            <param name="_match"></param>
+        </member>
+        <member name="M:Syntax.RunBase.Verified">
+            <summary>
+            Have to contain code where check condition for method Run().
+            </summary>
+            <returns> Return "true" if all OK</returns>
+        </member>
+        <member name="M:Syntax.RunBase.Run">
+            <summary>
+            Do functionaliti. Must be ovverriden.
+            </summary>
+        </member>
+        <member name="M:Syntax.RunBase.Go">
+            <summary>
+            Call this method for execute functionality
+            </summary>
+        </member>
+        <member name="T:Syntax.Syntax">
+            <summary>
+            Describes the RuleForse test grammar.
+            </summary>
+        </member>
+        <member name="F:Syntax.Syntax.runners">
+            <summary>
+            List of runBase objects for save execute queri of script.
+            </summary>
+        </member>
+    </members>
+</doc>
