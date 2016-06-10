@@ -8,6 +8,7 @@ using System.Data;
 
 namespace Depot
 {
+    #region Конечная версия структур
     /// <summary>
     /// Метатип trait
     /// </summary>
@@ -21,6 +22,19 @@ namespace Depot
         /// Знания-факты
         /// </summary>
         Fact = 1
+    }
+
+    /// <summary>
+    /// Метатип сущностей
+    /// </summary>
+    public enum EntityTypes : byte
+    {
+        None = 0,
+        Const = 1,
+        Knowledge = 2,
+        ComplexTable = 3,
+        Counting = 4,
+        Calendar = 5
     }
 
     /// <summary>
@@ -74,6 +88,48 @@ namespace Depot
         Memo = 8
     }
 
+    /// <summary>
+    /// Структура для элемента trait, хранит код сущности - код правила, предиката, вывода, элемента справочника, поля, документа, и т.д.
+    /// </summary>
+    internal struct EntityId
+    {
+        /// <summary>
+        /// Данные
+        /// </summary>
+        internal ulong data { get; set; }
+
+        internal EntityId (ulong data)
+            : this ()
+        {
+            this.data = data;
+        }
+
+        internal ulong SampleId
+        {
+            get
+            {
+                return 0; //TODO реализовать SampleId
+            }
+        }
+
+        internal ulong RowId
+        {
+            get
+            {
+                return 0; //TODO реализовать RowId
+            }
+        }
+
+        internal ulong TransId
+        {
+            get
+            {
+                return 0; //TODO реализовать TransId
+            }
+        }
+    }
+
+    #endregion
     /// <summary>
     /// Тип трэйта определяет его физическую структуру.
     /// </summary>
@@ -161,22 +217,6 @@ namespace Depot
 
     }
 
-    /// <summary>
-    /// Структура для элемента trait, хранит код сущности - код правила, предиката, вывода, элемента справочника, поля, документа, и т.д.
-    /// </summary>
-    internal struct EntityId
-    {
-        /// <summary>
-        /// Данные
-        /// </summary>
-        internal ulong data { get; set; }
-
-        internal EntityId (ulong data)
-            : this ()
-        {
-            this.data = data;
-        }
-    }
 
     /// <summary>
     /// Уникальный идентификатор trait в базе данных.

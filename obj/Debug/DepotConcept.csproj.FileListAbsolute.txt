@@ -26,3 +26,7 @@ D:\10Reps\001Depot\bin\Debug\DepotConcept.exe.config
 D:\10Reps\001Depot\bin\Debug\DepotConcept.XML
 D:\10Reps\001Depot\obj\Debug\DepotConcept.exe
 D:\10Reps\001Depot\obj\Debug\DepotConcept.pdb
+D:\10Rep\101Depot\bin\Debug\DepotConcept.exe.config
+D:\10Rep\101Depot\bin\Debug\DepotConcept.XML
+D:\10Rep\101Depot\obj\Debug\DepotConcept.exe
+D:\10Rep\101Depot\obj\Debug\DepotConcept.pdb

@@ -42,6 +42,7 @@ namespace Depot
 
         private Sorter sorter;
         private Holder holder;
+        private SortedList<Entity> entities;
 
         /// <summary>
         /// Создает новый файл с базой данных и переводит механизм в готовность исполения команд

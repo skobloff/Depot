@@ -60,6 +60,7 @@
     <Compile Include="Depot\Datas\DepotDataInt.cs" />
     <Compile Include="Depot\Datas\DepotDataReal.cs" />
     <Compile Include="Depot\Datas\DepotDataString.cs" />
+    <Compile Include="Depot\Entity.cs" />
     <Compile Include="Depot\Lattice\Knowledge\Facts\lrfDictionary.cs" />
     <Compile Include="Depot\Lattice\Knowledge\Facts\lrFact.cs" />
     <Compile Include="Depot\Lattice\Knowledge\lRule.cs" />
